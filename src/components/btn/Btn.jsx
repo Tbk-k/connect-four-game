@@ -2,15 +2,23 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { StyledBtn } from "./Btn.styles";
 
-const Btn = ({ id, text, backgroundColor = "white", image = null, color = "black", isGame, setMenuState }) => {
+const Btn = ({
+  id,
+  text,
+  backgroundColor = "white",
+  image = null,
+  color = "black",
+  isGame,
+  setMenuState,
+}) => {
   const navigate = useNavigate();
 
   const buttonFunctions = {
     0: () => navigate("/game"),
     1: () => navigate("/game"),
-    2: () => navigate("/"),
+    2: () => navigate("/rules"),
     3: () => setMenuState(false),
-    5: () => navigate("/")
+    5: () => navigate("/"),
   };
 
   const handleClick = () => {
@@ -18,7 +26,13 @@ const Btn = ({ id, text, backgroundColor = "white", image = null, color = "black
   };
 
   return (
-    <StyledBtn backgroundColor={backgroundColor} color={color} onClick={handleClick} isGame={isGame} image={image}>
+    <StyledBtn
+      backgroundColor={backgroundColor}
+      color={color}
+      onClick={handleClick}
+      isGame={isGame}
+      image={image}
+    >
       {text}
       {image && image}
     </StyledBtn>

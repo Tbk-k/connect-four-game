@@ -6,6 +6,7 @@ export const StyledNav = styled.nav`
   display: flex;
   justify-content: ${({ isGame }) => (isGame ? "space-between" : "center")};
   align-items: center;
+  margin: 0 auto;
 `;
 
 export const StyledBtn = styled.button`
@@ -18,6 +19,7 @@ export const StyledBtn = styled.button`
   cursor: pointer;
   padding: 10px 30px;
   text-transform: uppercase;
+  min-width: 130px;
   &:hover {
     background-color: ${({ theme }) => theme.colors.red};
   }

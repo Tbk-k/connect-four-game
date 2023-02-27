@@ -7,9 +7,9 @@ export const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   background-color: rgb(0, 0, 0, 50%);
-  position: absolute;
+  position: fixed;
   top: 0;
+  left: 0;
   padding: 20px;
+  z-index: 100;
 `;
-
-
