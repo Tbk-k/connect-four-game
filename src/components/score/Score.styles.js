@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   gap: 20px;
-  margin: 50px 0;
+  margin-bottom: 50px;
   div {
     background-color: ${({ theme }) => theme.colors.white};
     border-radius: 20px;
@@ -37,31 +37,63 @@ export const Wrapper = styled.div`
       right: -20%;
     }
   }
+
+  @media screen and (min-width: 760px) {
+    gap: 30px;
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 15px 20px 15px 38px;
+      &:last-of-type {
+        flex-direction: row-reverse;
+        padding: 15px 38px 15px 20px;
+      }
+      p {
+        font: ${({ theme }) => theme.fonts.heading.L};
+      }
+      h3 {
+        font: ${({ theme }) => theme.fonts.heading.S};
+      }
+      .player-one {
+        left: -10%;
+      }
+      .player-two {
+        right: -10%;
+      }
+    }
+  }
+
   @media screen and (min-width: 1024px) {
     position: absolute;
     top: 50%;
     left: 0;
-    transform: translateY(-50%);
+    transform: translateY(calc(-100% + 25px));
     margin: 0;
+
     div {
-      position: absolute;
-      padding: 48px 26px 17px;
-      &:first-of-type {
-        left: -180px;
-      }
+      width: fit-content;
+      flex-direction: column;
+      padding: 46px 40px 17px;
       &:last-of-type {
-        right: -180px;
+        flex-direction: column;
+        transform: translateX(180%);
+        padding: 46px 40px 17px;
+      }
+      &:first-of-type {
+        transform: translateX(-180%);
       }
       svg {
-        top: -25%;
-        transform: translateX(-50%);
+        top: 0;
       }
       .player-one {
         left: 50%;
+        transform: translate(-50%, -50%);
       }
       .player-two {
-        right: 0;
-        left: 50%;
+        right: 50%;
+        transform: translate(50%, -50%);
       }
     }
   }
