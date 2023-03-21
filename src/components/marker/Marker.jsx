@@ -3,31 +3,34 @@ import styled from "styled-components";
 import { ReactComponent as RedMarker } from "../../assets/img/marker-red.svg";
 import { ReactComponent as YellowMarker } from "../../assets/img/marker-yellow.svg";
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
   width: 100%;
-  position: absolute;
-  top: -40px;
-  left: 28.5px;
-  display: none;
+  padding-left: 27px;
+  padding-bottom: 5px;
   svg {
-    transform: ${({ translateX }) => `translateX(${translateX}px)`};
-    opacity: ${({ isHovering }) => !isHovering && 0};
+    display: none;
     transition: transform 0.25s cubic-bezier(0.17, 0.67, 0.38, 0.95),
       opacity 0.25s linear;
+    opacity: 0;
   }
   @media screen and (min-width: 1024px) {
-    display: block;
+    svg {
+      display: block;
+
+      transform: ${({ columnTargetId }) =>
+        `translateX(${columnTargetId * 92.5}px)`};
+    }
   }
 `;
 
-const Marker = ({ activePlayer, targetId, isHovering }) => {
-  const pointer = activePlayer === 1 ? <RedMarker /> : <YellowMarker />;
-  let translateX = targetId && targetId * 81.33;
-  return (
-    <Wrapper translateX={translateX} isHovering={isHovering}>
-      {pointer}
-    </Wrapper>
-  );
+const Marker = ({ activePlayer, columnTargetId }) => {
+  let pointer =
+    activePlayer === "red" ? (
+      <RedMarker id="marker" />
+    ) : (
+      <YellowMarker id="marker" />
+    );
+  return <Wrapper columnTargetId={columnTargetId}>{pointer}</Wrapper>;
 };
 
 export default Marker;

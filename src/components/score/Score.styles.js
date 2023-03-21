@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   gap: 20px;
-  margin-bottom: 50px;
+  margin: 50px 0;
   div {
     background-color: ${({ theme }) => theme.colors.white};
     border-radius: 20px;
@@ -67,9 +67,10 @@ export const Wrapper = styled.div`
 
   @media screen and (min-width: 1024px) {
     position: absolute;
+    z-index: 1;
     top: 50%;
     left: 0;
-    transform: translateY(calc(-100% + 25px));
+    transform: translateY(calc(-75%));
     margin: 0;
 
     div {
@@ -78,11 +79,11 @@ export const Wrapper = styled.div`
       padding: 46px 40px 17px;
       &:last-of-type {
         flex-direction: column;
-        transform: translateX(180%);
+        transform: translateX(calc(180% + 10px));
         padding: 46px 40px 17px;
       }
       &:first-of-type {
-        transform: translateX(-180%);
+        transform: translateX(calc(-180% - 10px));
       }
       svg {
         top: 0;
@@ -94,6 +95,17 @@ export const Wrapper = styled.div`
       .player-two {
         right: 50%;
         transform: translate(50%, -50%);
+      }
+    }
+  }
+
+  @media screen and (min-width: 1100px) {
+    div {
+      &:last-of-type {
+        transform: translateX(calc(180% + 50px));
+      }
+      &:first-of-type {
+        transform: translateX(calc(-180% - 50px));
       }
     }
   }

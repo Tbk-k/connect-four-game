@@ -1,57 +1,119 @@
-import { BoardWrapper, InnerWrapper, Wrapper } from "./Board.styles";
-import BlackLayerSmall from "../../assets/img/board-layer-black-small.svg";
-import WhiteLayerSmall from "../../assets/img/board-layer-white-small.svg";
-import WhiteLayerLarge from "../../assets/img/board-layer-white-large.svg";
-import BlackLayerLarge from "../../assets/img/board-layer-black-large.png";
-import { useEffect, useRef, useState } from "react";
-import { ReactComponent as RedMarker } from "../../assets/img/marker-red.svg";
-import { ReactComponent as YellowMarker } from "../../assets/img/marker-yellow.svg";
-import Score from "../score/Score";
-import Timer from "../timer/Timer";
-import BoardColumns from "../boardColumns/BoardColumns";
+import React, { useEffect, useState } from "react";
+import BoardColumn from "../boardColumn/BoardColumn";
 import Marker from "../marker/Marker";
-
+import Score from "../score/Score";
+import { BoardContainer, StyledBoard } from "./Board.styles";
 const Board = () => {
-  const [activePlayer, setActivePlayer] = useState(1);
-  const [targetId, setTargetId] = useState(1);
-  const [isHovering, setIsHovering] = useState(false);
+  const [activePlayer, setActivePlayer] = useState("red");
+  const [columnTargetId, setColumnTargetId] = useState(0);
+  const [boardIsHover, setBoardIsHover] = useState(false);
+  const [score, setScore] = useState({
+    red: 0,
+    yellow: 0,
+  });
+  const [board, setBoard] = useState(
+    Array.from({ length: 7 }, () => Array.from({ length: 6 }, () => null))
+  );
 
-  const handleMouseEnter = () => {
-    setIsHovering(true);
+  const cols = board.length;
+  const rows = board[0].length;
+
+  const checkVertival = (score) => {
+    for (let col = 0; col < cols; col++) {
+      for (let row = 0; row < rows - 2; row++) {
+        let player = board[col][row];
+        if (
+          player &&
+          player === board[col][row + 1] &&
+          player === board[col][row + 2]
+        ) {
+          score = { ...score, [player]: (score[player] += 3) };
+        }
+      }
+    }
+    return score;
   };
-  const handleMouseLeave = () => {
-    setIsHovering(false);
+
+  const checkHoryzontal = (score) => {
+    for (let col = 0; col < cols - 2; col++) {
+      for (let row = 0; row < rows; row++) {
+        let player = board[col][row];
+        if (
+          player &&
+          player === board[col + 1][row] &&
+          player === board[col + 2][row]
+        ) {
+          score = { ...score, [player]: (score[player] += 3) };
+        }
+      }
+    }
+    return score;
+  };
+
+  const checkDiagonal = (score) => {
+    for (let col = 0; col < cols - 2; col++) {
+      // top to bottom
+      for (let row = 0; row < rows - 2; row++) {
+        let player = board[col][row];
+        if (
+          player &&
+          player === board[col + 1][row + 1] &&
+          player === board[col + 2][row + 2]
+        ) {
+          score = { ...score, [player]: (score[player] += 3) };
+        }
+      }
+      //bottom to top
+      for (let row = 2; row < rows; row++) {
+        let player = board[col][row];
+        if (
+          player &&
+          player === board[col + 1][row - 1] &&
+          player === board[col + 2][row - 2]
+        ) {
+          score = { ...score, [player]: (score[player] += 3) };
+        }
+      }
+    }
+
+    return score;
+  };
+
+  const checkForWin = () => {
+    let newScore = {
+      red: 0,
+      yellow: 0,
+    };
+    newScore = checkHoryzontal(newScore);
+    newScore = checkVertival(newScore);
+    newScore = checkDiagonal(newScore);
+    setScore(newScore);
+  };
+
+  const handleMouseMove = (e) => {
+    let targetId = e.target.id;
+    if (!targetId && columnTargetId === targetId) {
+      return;
+    } else if (targetId) setColumnTargetId(targetId);
   };
 
   return (
-    <Wrapper>
-      <InnerWrapper>
-        <Score />
-        <BoardWrapper
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        >
-          <Marker
+    <BoardContainer>
+      <Score score={score} />
+      <Marker activePlayer={activePlayer} columnTargetId={columnTargetId} />
+      <StyledBoard onMouseMove={handleMouseMove}>
+        {board.map((column, id) => (
+          <BoardColumn
+            key={id}
+            id={id}
+            column={column}
             activePlayer={activePlayer}
-            targetId={targetId}
-            isHovering={isHovering}
+            setActivePlayer={setActivePlayer}
+            findInColumn={checkForWin}
           />
-          <img
-            srcSet={`${BlackLayerSmall} 640w, ${BlackLayerLarge} 1024w`}
-            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 100vw, 1024px"
-            src={BlackLayerSmall}
-            alt=""
-          />
-          <img
-            srcSet={`${WhiteLayerSmall} 640w, ${WhiteLayerLarge} 1024w`}
-            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 100vw, 1024px"
-            src={WhiteLayerSmall}
-            alt=""
-          />
-          <BoardColumns setTargetId={setTargetId} />
-        </BoardWrapper>
-      </InnerWrapper>
-    </Wrapper>
+        ))}
+      </StyledBoard>
+    </BoardContainer>
   );
 };
 

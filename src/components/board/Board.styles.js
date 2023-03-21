@@ -1,31 +1,32 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
-  width: 100%;
+export const BoardContainer = styled.div`
+  border: 1px solid black;
+  max-width: 550px;
   height: 100%;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-`;
-
-export const BoardWrapper = styled.div`
-  position: relative;
   width: 100%;
-  cursor: pointer;
-  img {
-    width: 100%;
-    max-width: 584px;
-    &:first-of-type {
-      position: absolute;
-      z-index: 1;
-    }
-    &:last-of-type {
-      position: relative;
-      z-index: 10;
-    }
+  flex-grow: 0;
+  @media screen and (min-width: 1024px) {
+    margin-top: 50px;
+    max-width: 650px;
   }
 `;
 
-export const InnerWrapper = styled.div`
-  margin-top: 50px;
+export const StyledBoard = styled.div`
+  width: 100%;
+  aspect-ratio: 1.08;
+  min-width: 335px;
+  background-color: white;
+  margin: 0 auto;
+  border-radius: 20px;
+  ${({ theme }) => `box-shadow: ${theme.boxShadow.btn.idle}`};
+  display: flex;
+  cursor: pointer;
+  position: relative;
+  z-index: 10;
+  &:hover {
+    #marker {
+      opacity: 1;
+    }
+  }
 `;
