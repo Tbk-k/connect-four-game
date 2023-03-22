@@ -97,11 +97,26 @@ const Board = () => {
     } else if (targetId) setColumnTargetId(targetId);
   };
 
+  const handleMouseEnter = () => {
+    setBoardIsHover(true);
+  };
+  const handleMouseLeave = () => {
+    setBoardIsHover(false);
+  };
+
   return (
     <BoardContainer>
       <Score score={score} />
-      <Marker activePlayer={activePlayer} columnTargetId={columnTargetId} />
-      <StyledBoard onMouseMove={handleMouseMove}>
+      <Marker
+        activePlayer={activePlayer}
+        columnTargetId={columnTargetId}
+        boardIsHover={boardIsHover}
+      />
+      <StyledBoard
+        onMouseMove={handleMouseMove}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
         {board.map((column, id) => (
           <BoardColumn
             key={id}
