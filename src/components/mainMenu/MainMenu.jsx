@@ -1,8 +1,7 @@
 import React from "react";
-import Btn from "../btn/Btn";
 import { ReactComponent as PvP } from "../../assets/img/player-vs-player.svg";
 import { ReactComponent as PvC } from "../../assets/img/player-vs-cpu.svg";
-import { Wrapper, InnerWrapper } from "./MainMenu.styles";
+import { Wrapper } from "./MainMenu.styles";
 import { useTheme } from "styled-components";
 import Navbar from "../navbar/Navbar";
 import Menu from "../menu/Menu";

@@ -2,8 +2,10 @@ import React from "react";
 import { Wrapper } from "./Score.styles";
 import { ReactComponent as PlayerOne } from "../../assets/img/player-one.svg";
 import { ReactComponent as PlayerTwo } from "../../assets/img/player-two.svg";
+import { useSelector } from "react-redux";
 
-const Score = ({ score: { red, yellow } }) => {
+const Score = () => {
+  let { red, yellow } = useSelector((state) => state.gameScore);
   return (
     <Wrapper>
       <div>

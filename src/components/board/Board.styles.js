@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const BoardContainer = styled.div`
-  border: 1px solid black;
   max-width: 550px;
   height: 100%;
   width: 100%;

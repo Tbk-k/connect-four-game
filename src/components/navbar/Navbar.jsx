@@ -1,17 +1,18 @@
 import React from "react";
 import { StyledBtn, StyledNav } from "./Navbar.styles";
 import { ReactComponent as Logo } from "../../assets/img/logo.svg";
+import { useReset } from "../../utils/useReset";
 
 const Navbar = ({ isGame, setMenuState }) => {
-  const handleClick = () => {
+  const handleMenu = () => {
     setMenuState(true);
   };
-
+  const resetGame = useReset();
   return (
     <StyledNav isGame={isGame}>
-      {isGame && <StyledBtn onClick={handleClick}>menu</StyledBtn>}
+      {isGame && <StyledBtn onClick={handleMenu}>menu</StyledBtn>}
       <Logo />
-      {isGame && <StyledBtn>restart</StyledBtn>}
+      {isGame && <StyledBtn onClick={resetGame}>restart</StyledBtn>}
     </StyledNav>
   );
 };

@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { ReactComponent as RedMarker } from "../../assets/img/marker-red.svg";
 import { ReactComponent as YellowMarker } from "../../assets/img/marker-yellow.svg";
@@ -23,7 +24,8 @@ export const Wrapper = styled.div`
   }
 `;
 
-const Marker = ({ activePlayer, columnTargetId, boardIsHover }) => {
+const Marker = ({ columnTargetId, boardIsHover }) => {
+  let activePlayer = useSelector((state) => state.activePlayer);
   let pointer =
     activePlayer === "red" ? (
       <RedMarker id="marker" />
