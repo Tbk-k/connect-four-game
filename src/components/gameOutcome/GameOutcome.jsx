@@ -16,10 +16,22 @@ const GameOutcome = () => {
     };
   }, []);
 
+  const content =
+    winner === "draw" ? (
+      <>
+        <p></p>
+        <p>tie</p>
+      </>
+    ) : (
+      <>
+        <p>{`player ${winner === "red" ? 1 : 2}`}</p>
+        <p>wins</p>
+      </>
+    );
+
   return (
     <InnerWrapper>
-      <p>{`player ${winner === "red" ? 1 : 2}`}</p>
-      <p>Wins</p>
+      {content}
       <button onClick={resetGame}>play again</button>
     </InnerWrapper>
   );
