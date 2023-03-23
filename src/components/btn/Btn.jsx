@@ -43,6 +43,7 @@ const Btn = ({
       onClick={handleClick}
       isGame={isGame}
       image={image}
+      disabled={id === 0}
     >
       {text}
       {image && image}

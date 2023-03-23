@@ -24,6 +24,10 @@ export const StyledBtn = styled.button`
         ? `${theme.boxShadow.btn.hover.mobile}, ${theme.boxShadow.btn.hover.tablet}`
         : theme.boxShadow.btn.hover.mobile};
   }
+  &:disabled:hover {
+    border-color: black;
+    box-shadow: ${({ theme }) => theme.boxShadow.btn.idle};
+  }
 
   @media screen and (min-width: 768px) {
     &:hover {

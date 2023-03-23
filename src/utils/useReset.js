@@ -1,6 +1,5 @@
 import { useDispatch } from "react-redux";
 import { resetScore } from "../features/gameScore";
-import { resetPlayer } from "../features/activePlayer";
 import { resetGameBoard } from "../features/gameBoard";
 import { resetTimer } from "../features/timerSlice";
 

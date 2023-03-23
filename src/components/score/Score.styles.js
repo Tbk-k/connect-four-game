@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   gap: 20px;
-  margin: 50px 0;
+  margin: 25px 0;
   div {
     background-color: ${({ theme }) => theme.colors.white};
     border-radius: 20px;
@@ -40,6 +40,7 @@ export const Wrapper = styled.div`
 
   @media screen and (min-width: 760px) {
     gap: 30px;
+    margin: 50px 0s;
     div {
       display: flex;
       align-items: center;

@@ -1,8 +1,19 @@
 import styled from "styled-components";
 
+export const OuterWrapper = styled.div`
+  height: calc(100% - 61px);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+`;
+
 export const BoardContainer = styled.div`
   max-width: 550px;
   height: 100%;
+  max-height: 100vh;
+  position: relative;
   width: 100%;
   flex-grow: 0;
   @media screen and (min-width: 1024px) {

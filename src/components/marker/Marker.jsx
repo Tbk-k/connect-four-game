@@ -25,7 +25,7 @@ export const Wrapper = styled.div`
 `;
 
 const Marker = ({ columnTargetId, boardIsHover }) => {
-  let activePlayer = useSelector((state) => state.activePlayer);
+  let activePlayer = useSelector((state) => state.timerSlice.activePlayer);
   let pointer =
     activePlayer === "red" ? (
       <RedMarker id="marker" />

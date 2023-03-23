@@ -10,7 +10,3 @@ export const Wrapper = styled.div`
   align-items: center;
   padding: 20px;
 `;
-
-export const InnerWrapper = styled.div`
-
-`;

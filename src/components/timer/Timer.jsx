@@ -3,7 +3,7 @@ import { InnerWrapper, Wrapper } from "./Timer.styles";
 import { ReactComponent as BackgroundRed } from "../../assets/img/turn-background-red.svg";
 import { ReactComponent as BackgroundYellow } from "../../assets/img/turn-background-yellow.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { updateTime, setActivePlayer } from "../../features/timerSlice";
+import { updateTime } from "../../features/timerSlice";
 
 const Timer = () => {
   const { activePlayer, time } = useSelector((state) => state.timerSlice);
@@ -12,13 +12,13 @@ const Timer = () => {
   useEffect(() => {
     let intervalID;
     intervalID = setInterval(() => {
-      dispatch(updateTime("red"));
+      dispatch(updateTime());
     }, 1000);
 
     return () => {
       clearInterval(intervalID);
     };
-  }, []);
+  }, [dispatch]);
 
   const Background = activePlayer === "red" ? BackgroundRed : BackgroundYellow;
 

@@ -1,12 +1,11 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  height: 100%;
   background-color: ${({ theme }) => theme.colors.purple};
   border-radius: 20px 20px 0 0;
-  position: absolute;
-  width: 100%;
-  left: 0;
+  width: calc(100% + 40px);
+  height: 100%;
+  position: relative;
 `;
 
 export const InnerWrapper = styled.div`
